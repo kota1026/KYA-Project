@@ -29,6 +29,7 @@ B-regulations/
 
 ## 主要論点(順次作成)
 
+- [x] `eu-ai-act-agent-identity-mandate.md` — EU AI Act が Agent Identity / KYA を規制必須化するか(W2、EU 単独深堀り)
 - [ ] `non-custodial-wallet-developer-status.md` — ノンカストディWallet開発者の規制エンティティ性
 - [ ] `tornado-cash-implications.md` — Tornado Cash判例(Roman Storm)後の解釈
 - [ ] `agent-payments-responsibility-allocation.md` — Agent Payments の責任分界点
@@ -37,6 +38,10 @@ B-regulations/
 - [ ] `agent-payments-license-mapping.md` — 各法域での必要ライセンス
 - [ ] `data-protection-and-zk-proof.md` — GDPR / 個人情報保護法と ZK proof
 - [ ] `cross-border-payment-flow.md` — 国際送金規制との関係
+- [ ] `eidas-2-eudi-wallet-agent-delegation.md` — eIDAS 2.0 ARF の agent / delegation 拡張(2027-2028 のロードマップ追跡、`eu-ai-act-agent-identity-mandate.md` §2.3 サブ論点 8 から派生)
+- [ ] `amlr-2027-casp-agent-cdd.md` — AMLR 2027 で CASP が agent 経由 transaction の CDD を満たす技術要件(同上派生)
+- [ ] `us-ai-act-agent-identity-mandate.md` — US 側の同論点(NIST AI RMF、SEC、州 AI 法)
+- [ ] `jp-ai-promotion-act-agent-identity.md` — 日本 AI 推進法 + 金融庁 AI ガバナンス検討会の agent 扱い
 
 ## 進め方
 
