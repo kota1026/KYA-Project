@@ -1,15 +1,20 @@
 # 戦略意思決定文書(Phase 0 最終出力)
 
-> **Status**: Draft / Phase 0 進行中(W0)
-> **Last Updated**: 2026-05-08
+> **Status**: Draft / Phase 0 進行中(W1)
+> **Last Updated**: 2026-05-20
 > **目標確定日**: 2026-08-初(W12)
 
 このドキュメントは Phase 0 終了時点で確定する戦略判断をまとめる。
 W1-W11 の間は仮置き → 暫定 → 確定の段階を経る。
 
-## 0. Executive Summary
+## 0. Executive Summary(W1 暫定)
 
-(Phase 0 最終週に書く。3-5 文)
+**ポジショニング仮説**: KYA Project = **Multi-cloud Agent Identity & Compliance Layer**。
+AWS AgentCore Payments(2026-05-07 GA preview)、Google AP2、Stripe Agentic 等の **Payment Rails Layer** の上に乗る、ベンダーロックインしない **KYA(Know Your Agent)レイヤー** を提供する。
+
+**戦略空間の根拠**: AWS は machine identity(workload identity / IAM / JWT)までしか踏み込んでいない。**人間との binding、delegation chain audit、規制 attestation、dispute mediation** は意図的に空けている。"KYA" 用語は AWS 公式 docs に登場しない(WebSearch 2026-05-20 確認)。サードパーティ(ATXP、Trulioo、Persona、Sumsub 等)が既に "AgentCore + KYA" を組み合わせで論じ始めており、市場の認識は形成されつつある。**6-12 ヶ月の戦略 window**。
+
+**この仮説の検証は W2-W6 で完了させる**(AgentCore Identity の実装範囲精査、サードパーティ KYA 提供者の density 調査、EU AI Act 2026-08 施行影響)。
 
 ---
 
@@ -54,20 +59,46 @@ W1-W11 の間は仮置き → 暫定 → 確定の段階を経る。
 
 ## 3. 技術アーキテクチャ基本方針
 
-**前提**: ノンカストディ型(仮置き、Track B 結果で確定)
+**前提**: ノンカストディ型(仮置き、Track B 結果で確定)+ **AWS-as-rails、KYA-as-layer**(W1 暫定)
 
-**論点(Track C から)**:
-- DID 標準: W3C DID v1.1 / ERC-8004 のどちらを基盤にするか
-- ZK 系: Polygon ID / Privado ID を採用するか自前構築か
-- Selective Disclosure: VC + ZKP の組合せ
-- PQC: 今は migration-able に設計、実装は2030年代後半を見据える
-- zkTLS: Web2 認証情報を Agent に持たせる際のブリッジ
+### レイヤー構造(W1 暫定)
 
-**確定項目**:
+```
+[L3] KYA Layer ★ コタさんの戦略空間
+     - Human ↔ Agent binding(DID + delegation chain)
+     - Capability attestation(VC + ZKP)
+     - Regulatory audit trail(7年保管、PQC migratable)
+     - Dispute mediation(第三者立場)
+     - Multi-cloud federation
+
+[L2] Payment Rails Layer ← AWS AgentCore Payments / Google AP2 / Stripe Agentic
+     - x402 / AP2 / Stripe Agentic protocols
+     - Wallet ops(Coinbase CDP / Privy / Stripe)
+     - Stablecoin settlement
+
+[L1] Cloud Infrastructure
+     - AWS / GCP / Azure / Self-hosted
+```
+
+KYA Project は **L3 のみを提供**。L2 の wallet custody や settlement には触れない → ノンカストディ前提を維持しやすい。
+
+### 論点(Track C から)
+
+- **DID 標準**: W3C DID v1.1 vs ERC-8004(Trustless Agents)。AWS workload identity との glue 設計
+- **ZK 系**: Polygon ID / Privado ID を採用するか自前構築か。Halo2 / Plonky3 / SP1 のベンチマーク次第
+- **Selective Disclosure**: VC + ZKP の組合せ(個人情報を晒さず agent の権限・人間 binding を証明)
+- **PQC**: migration-able に設計、実装は 2030 年代後半(NIST FIPS 203/204/205 採用)
+- **zkTLS**: Web2 認証情報を Agent に持たせる際のブリッジ
+- **AgentCore Identity 統合**: AWS workload identity → DID 発行のブリッジ実装
+
+### 確定項目(W11 で確定予定)
+
 - [ ] DID 基盤
 - [ ] ZK ライブラリ
 - [ ] PQC 設計方針(migration-able のみ確定 / 即実装はしない)
 - [ ] 署名長期保存(チャージバック保管7年要件)
+- [ ] AgentCore Identity 連携モジュール(マルチクラウド前提で AWS は最初のターゲット)
+- [ ] AP2 / Stripe Agentic とのプロトコル互換層
 
 ---
 
@@ -101,8 +132,13 @@ W1-W11 の間は仮置き → 暫定 → 確定の段階を経る。
 - PayPay 社内ニーズの強度
 - 利益相反整理(コタが PayPay 内に居つつ独立して動く場合)
 - 競合との時間競争(先行投資を受けたスタートアップとのスピード差)
+- **AWS launch を踏まえた時間圧力**: KYA レイヤーの戦略 window は **6-12 ヶ月**(2026-Q4 〜 2027-Q2 が分水嶺)。PayPay 社内プロセスの速度と独立スタートアップの速度の比較が決定要因
 
-**暫定ポジション**: 未決定
+**暫定ポジション**(W1): **Path C(Hybrid)が最有力**。理由:
+1. AWS の時間圧力に PayPay 単独プロセスでは間に合わない可能性が高い
+2. KYA Layer は multi-cloud / multi-customer 前提 → PayPay 専用にする意味が薄い
+3. PayPay は最初の paying customer + 仮説検証パートナーとして最強
+4. 個人開発で IP を保持しつつ PayPay にライセンス供与 → 後から Path A への切替も可能
 
 ---
 
@@ -114,6 +150,12 @@ W1-W11 の間は仮置き → 暫定 → 確定の段階を経る。
 - [ ] 競合先行リスク(Visa/PayPal 投資先の市場shareによる winner-takes-most)
 - [ ] 技術陳腐化リスク(5年で Claude が定理証明アシスタント上級者水準到達 → 形式検証ノウハウのコモディティ化)
 - [ ] 個人時間リスク(本業との両立、家庭との両立)
+- [ ] **AWS 後出しリスク(NEW W1)**: AWS が re:Invent 2026(12月)で "AgentCore Compliance" / "AgentCore Identity Federation" を発表すれば KYA Layer を吸収される。継続 watch:
+  - re:Invent 2026 セッション CFP(11月公開予定)に "Agent Identity" / "Agent Compliance" 系がどれだけ採択されるか
+  - AWS の求人タイトル(Identity for Agents、Agent Trust、Agentic Commerce Compliance)
+  - 特許出願("agent identity verification", "agentic commerce attestation")
+  - AWS が ATXP / Trulioo / Persona を買収する兆候
+- [ ] **マルチクラウド非対称性リスク(NEW W1)**: Google AP2、Stripe Agentic が AWS と全く違う identity モデルを採用した場合、横断 KYA Layer の設計コストが膨らむ
 
 ---
 
@@ -135,3 +177,4 @@ Phase 0 終了時、以下を満たせば Phase 1 着手:
 | 日付 | 変更内容 |
 |------|----------|
 | 2026-05-08 | 初版作成(Phase 0 開始) |
+| 2026-05-20 | AWS Bedrock AgentCore Payments(2026-05-07 GA preview)を受けて戦略再フレーム。§0 Executive Summary 暫定追加(Multi-cloud KYA Layer ポジション)、§3 にレイヤー構造図、§5 暫定ポジション = Path C(Hybrid)、§6 に AWS 後出しリスク・マルチクラウド非対称性リスク追加。根拠: `inbox/2026-05-20-aws-bedrock-agentcore-payments.md`、`tracks/A-competitors/aws-bedrock-agentcore-payments.md` |
