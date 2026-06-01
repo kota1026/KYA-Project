@@ -41,7 +41,10 @@ B-regulations/
 - [ ] `eidas-2-eudi-wallet-agent-delegation.md` — eIDAS 2.0 ARF の agent / delegation 拡張(2027-2028 のロードマップ追跡、`eu-ai-act-agent-identity-mandate.md` §2.3 サブ論点 8 から派生)
 - [ ] `amlr-2027-casp-agent-cdd.md` — AMLR 2027 で CASP が agent 経由 transaction の CDD を満たす技術要件(同上派生)
 - [ ] `us-ai-act-agent-identity-mandate.md` — US 側の同論点(NIST AI RMF、SEC、州 AI 法)
-- [ ] `jp-ai-promotion-act-agent-identity.md` — 日本 AI 推進法 + 金融庁 AI ガバナンス検討会の agent 扱い
+- [x] `jp-ai-promotion-act-agent-identity.md` — 日本 AI 推進法 + 金融庁 AIDP 1.1 + 資金決済法 + 犯収法 の agent 扱い(W3、JP 単独深掘り)
+- [ ] `jp-jpki-did-integration-roadmap.md` — 2027-04 改正犯収法施行規則(JPKI 一本化)と KYA DID 戦略の統合ロードマップ(W3 派生)
+- [ ] `jp-payment-agent-license-mapping.md` — AI Agent 支払い発火時の登録業(資金移動業 / 暗号資産交換業 / 電子決済等代行業 / 銀行業)判定フレーム(W3 派生)
+- [ ] `jp-jvcea-agent-trading-self-regulation-watch.md` — JVCEA / JCBA の AI Agent 自動取引自主規制ルール進行監視(W3 派生)
 
 ## 進め方
 
