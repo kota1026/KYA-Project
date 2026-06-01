@@ -42,7 +42,7 @@ B-regulations/
 - [ ] `eu-business-wallet-implementing-acts-watch.md` — EBW(COM 2025/838)Implementing Acts プロセス監視(2027-Q1〜 stakeholder consultation、agentic AI Recital 28 委任の追跡、本稿派生)
 - [ ] `we-build-consortium-engagement.md` — WE BUILD non-paper(2026-03)精読 + メンバー連携経路(本稿派生、Track A クロスリファレンス候補)
 - [ ] `eidas-qtsp-vs-non-qualified-eaa-decision.md` — QTSP 認定 vs non-qualified EAA Provider の事業選択深堀り(本稿派生、Phase 2 判断材料)
-- [ ] `amlr-2027-casp-agent-cdd.md` — AMLR 2027 で CASP が agent 経由 transaction の CDD を満たす技術要件(同上派生)
+- [x] `amlr-2027-casp-agent-cdd.md` — AMLR 2027 で CASP が agent 経由 transaction の CDD を満たす技術要件(W3、EU 単独深掘り、**AMLA Article 28(1) RTS Draft 2026-02-09 公表 / 2026-05-08 公開協議終了** 確認、Art. 79 self-hosted carve-out で KYA "infrastructure" 位置取り強化、**eIDAS QTSP 必須化リスクを W2「低」→ W3「中-高」に上方修正**)
 - [x] `us-ai-act-agent-identity-mandate.md` — US 側の同論点(W3、連邦 NIST/FTC/FinCEN/SEC/OCC-Fed-FDIC/CFPB + 州 CO/CA/TX/NY/NYC 二層構造、Trump EO 2025-12 + FTC AI Policy Statement 2026-03 + Tornado Cash 判決を統合)
 - [x] `jp-ai-promotion-act-agent-identity.md` — 日本 AI 推進法 + 金融庁 AIDP 1.1 + 資金決済法 + 犯収法 の agent 扱い(W3、JP 単独深掘り)
 - [ ] `jp-jpki-did-integration-roadmap.md` — 2027-04 改正犯収法施行規則(JPKI 一本化)と KYA DID 戦略の統合ロードマップ(W3 派生)
